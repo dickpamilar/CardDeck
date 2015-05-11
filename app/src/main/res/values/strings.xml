@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Card Deck - Memory Trainer</string>
+
+    <string name="shuffle1">Shuffle</string>
+    <string name="reset1">Reset</string>
+    <string name="action_settings">Settings</string>
+
+
+
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+</resources>
