@@ -1,9 +1,16 @@
 package com.holidaydiaries.carddeck_memorytrainer;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -11,10 +18,46 @@ import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends ActionBarActivity {
 
+    Deck deck;
+    TextView laidCards;
+    TextView remainingCards;
+    ImageView unturned;
+    ImageView turned;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        int defaultDeckCount = 1;
+        int deckCount = sharedPref.getInt(getString(R.string.savedDeckCount), defaultDeckCount);
+
         setContentView(R.layout.activity_main);
+
+        deck = new Deck(deckCount);
+        laidCards = (TextView) findViewById(R.id.laidCards);
+        remainingCards = (TextView) findViewById(R.id.remainingCards);
+        laidCards.setText(String.valueOf(deck.getLaidCards()));
+        remainingCards.setText(String.valueOf(deck.getRemainingCards()));
+
+        unturned = (ImageButton) findViewById(R.id.unturned);
+        turned = (ImageButton) findViewById(R.id.turned);
+
+        unturned.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String imageName = deck.drawCard();
+                int id = getResources().getIdentifier(imageName, "drawable",  getPackageName());
+                Drawable drawable = getResources().getDrawable(id);
+
+                turned.setImageDrawable  (drawable);
+
+            }
+        });
+
+
+
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
