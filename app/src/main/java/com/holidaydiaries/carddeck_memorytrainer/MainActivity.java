@@ -68,9 +68,6 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-
-
-
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
