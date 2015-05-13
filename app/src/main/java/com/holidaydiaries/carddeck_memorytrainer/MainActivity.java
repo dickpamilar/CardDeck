@@ -25,6 +25,7 @@ public class MainActivity extends ActionBarActivity {
     ImageView turned;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,20 +42,32 @@ public class MainActivity extends ActionBarActivity {
         laidCards.setText(String.valueOf(deck.getLaidCards()));
         remainingCards.setText(String.valueOf(deck.getRemainingCards()));
 
+        deck.shuffle();
         unturned = (ImageButton) findViewById(R.id.unturned);
         turned = (ImageButton) findViewById(R.id.turned);
+        turned.setVisibility(View.INVISIBLE);
 
         unturned.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String imageName = deck.drawCard();
-                int id = getResources().getIdentifier(imageName, "drawable",  getPackageName());
-                Drawable drawable = getResources().getDrawable(id);
-
-                turned.setImageDrawable  (drawable);
+                refreshScreen(imageName);
 
             }
         });
+
+        turned.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String imageName = deck.returnCard();
+                refreshScreen(imageName);
+
+            }
+        });
+
+
+
 
 
 
@@ -63,7 +76,27 @@ public class MainActivity extends ActionBarActivity {
         mAdView.loadAd(adRequest);
     }
 
-    @Override
+    public void refreshScreen( String imageName){
+        int id = getResources().getIdentifier(imageName, "drawable",  getPackageName());
+        Drawable drawable = getResources().getDrawable(id);
+        turned.setImageDrawable  (drawable);
+
+        if (deck.remainingCards == 0) {
+            unturned.setVisibility(View.INVISIBLE);
+        } else {
+            unturned.setVisibility(View.VISIBLE);
+        }
+        if (deck.laidCards == 0 ){
+            turned.setVisibility(View.INVISIBLE);
+        } else {
+            turned.setVisibility(View.VISIBLE);
+        }
+        remainingCards.setText(String.valueOf(deck.getRemainingCards()));
+        laidCards.setText(String.valueOf(deck.getLaidCards()));
+
+    };
+
+        @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);

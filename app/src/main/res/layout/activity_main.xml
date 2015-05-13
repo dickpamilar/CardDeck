@@ -24,22 +24,19 @@
             android:layout_weight="1"
             >
 
-            <TextView
-
-                android:layout_height="wrap_content"
+            <ImageButton
                 android:layout_width="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/shuffle1"
-                android:id="@+id/textView"
-                android:layout_margin="20dp"
-                android:gravity="top|center_horizontal" />
+                android:layout_height="wrap_content"
+                android:id="@+id/rewind"
+                android:src="@drawable/ic_fast_rewind_black_24dp"
+                android:background="@android:color/transparent" />
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/turned"
 
-                android:src="@drawable/crdb1fv"
+                android:src="@drawable/blueback"
                 android:background="@android:color/transparent" />
 
             <TextView
@@ -54,6 +51,46 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_horizontal"
+            android:layout_weight="1.5"
+            android:baselineAligned="false">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/shuffle"
+                android:src="@drawable/ic_shuffle_black_24dp"
+                android:background="@android:color/transparent"
+                android:layout_marginBottom="20dp" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/playforward"
+                android:src="@drawable/ic_playforward"
+                android:background="@android:color/transparent"
+                android:layout_marginBottom="20dp" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/playbackward"
+                android:src="@drawable/ic_playback"
+                android:background="@android:color/transparent"
+                android:layout_marginBottom="20dp" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pause"
+                android:src="@drawable/ic_pause_black_24dp"
+                android:background="@android:color/transparent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
 
             android:gravity="center_horizontal"
@@ -61,21 +98,20 @@
 
             >
 
-            <TextView
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/reset1"
-                android:id="@+id/textView2"
-                android:layout_margin="20dp"
-                android:gravity="top|center_horizontal" />
+                android:id="@+id/fastforward"
+                android:src="@drawable/ic_fast_forward_black_24dp"
+                android:background="@android:color/transparent"
+                android:focusableInTouchMode="false" />
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/unturned"
 
-                android:src="@drawable/crdb1fv"
+                android:src="@drawable/blueback"
                 android:background="@android:color/transparent" />
 
             <TextView
