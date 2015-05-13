@@ -50,8 +50,8 @@ public class MainActivity extends ActionBarActivity {
         unturned.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String imageName = deck.drawCard();
-                refreshScreen(imageName);
+                deck.drawCard();
+                refreshScreen();
 
             }
         });
@@ -60,8 +60,8 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                String imageName = deck.returnCard();
-                refreshScreen(imageName);
+                deck.returnCard();
+                refreshScreen();
 
             }
         });
@@ -73,8 +73,8 @@ public class MainActivity extends ActionBarActivity {
         mAdView.loadAd(adRequest);
     }
 
-    public void refreshScreen( String imageName){
-        int id = getResources().getIdentifier(imageName, "drawable",  getPackageName());
+    public void refreshScreen( ){
+        int id = getResources().getIdentifier(deck.getCurrentCard(), "drawable",  getPackageName());
         Drawable drawable = getResources().getDrawable(id);
         turned.setImageDrawable  (drawable);
 
@@ -113,5 +113,33 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putStringArray("deck", deck.getDeck());
+        outState.putInt("deckSize", deck.getDeckSize());
+        outState.putInt("position", deck.getPosition());
+        outState.putInt("laidCards", deck.getLaidCards());
+        outState.putInt("remainingCards", deck.getRemainingCards());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        deck.setDeck(savedInstanceState.getStringArray("deck"));
+        deck.setDeckSize(savedInstanceState.getInt("deckSize"));
+        deck.setPosition(savedInstanceState.getInt("position"));
+        deck.setLaidCards(savedInstanceState.getInt("laidCards"));
+        deck.setRemainingCards(savedInstanceState.getInt("remainingCards"));
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        refreshScreen();
     }
 }

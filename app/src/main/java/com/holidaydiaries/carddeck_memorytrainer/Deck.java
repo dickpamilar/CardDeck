@@ -45,28 +45,19 @@ public class Deck {
         this.position = position;
     }
 
-    public String drawCard(){
+    public void drawCard(){
         if (remainingCards != 0){
             position++;
             laidCards++;
             remainingCards--;
-        }
-        if (laidCards == 0) {
-            return String.valueOf(R.drawable.blueback);
-        }
-        return deck[position];
+
     }
-    public String returnCard(){
+    public void returnCard(){
         if (laidCards != 0 ){
             position--;
             laidCards--;
             remainingCards++;
         }
-
-        if (laidCards == 0){
-            return String.valueOf(R.drawable.blueback);
-        }
-        return deck[position];
 
     }
 
@@ -103,4 +94,28 @@ public class Deck {
         setRemainingCards(deckSize);
     }
 
+    public String[] getDeck() {
+        return deck;
+    }
+
+    public void setDeck(String[] deck) {
+        this.deck = deck;
+    }
+
+    public void setDeckSize(int deckSize) {
+        this.deckSize = deckSize;
+    }
+
+    public int getDeckSize() {
+        return deckSize;
+    }
+
+    public String getCurrentCard() {
+        if (getPosition() >= 0) {
+            return deck[getPosition()];
+        } else {
+            return String.valueOf(R.drawable.blueback);
+        }
+
+    }
 }
