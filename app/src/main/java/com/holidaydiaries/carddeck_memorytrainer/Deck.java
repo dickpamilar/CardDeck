@@ -46,11 +46,11 @@ public class Deck {
     }
 
     public void drawCard(){
-        if (remainingCards != 0){
+        if (remainingCards != 0) {
             position++;
             laidCards++;
             remainingCards--;
-
+        }
     }
     public void returnCard(){
         if (laidCards != 0 ){
@@ -117,5 +117,17 @@ public class Deck {
             return String.valueOf(R.drawable.blueback);
         }
 
+    }
+
+    public void rewind(){
+        setPosition(-1);
+        setLaidCards(0);
+        setRemainingCards(getDeckSize());
+    }
+
+    public void fastforward(){
+        setPosition(getDeckSize()-1);
+        setLaidCards(getDeckSize());
+        setRemainingCards(0);
     }
 }

@@ -23,6 +23,9 @@ public class MainActivity extends ActionBarActivity {
     TextView remainingCards;
     ImageView unturned;
     ImageView turned;
+    ImageView rewind;
+    ImageView fastforward;
+    ImageView reshuffle;
 
 
 
@@ -35,14 +38,13 @@ public class MainActivity extends ActionBarActivity {
         int deckCount = sharedPref.getInt(getString(R.string.savedDeckCount), defaultDeckCount);
 
         setContentView(R.layout.activity_main);
-
         deck = new Deck(deckCount);
         laidCards = (TextView) findViewById(R.id.laidCards);
         remainingCards = (TextView) findViewById(R.id.remainingCards);
         laidCards.setText(String.valueOf(deck.getLaidCards()));
         remainingCards.setText(String.valueOf(deck.getRemainingCards()));
 
-        deck.shuffle();
+
         unturned = (ImageButton) findViewById(R.id.unturned);
         turned = (ImageButton) findViewById(R.id.turned);
         turned.setVisibility(View.INVISIBLE);
@@ -66,11 +68,44 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        rewind = (ImageButton) findViewById(R.id.rewind);
+        rewind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deck.rewind();
+                refreshScreen();
+            }
+        });
+
+        fastforward = (ImageButton) findViewById(R.id.fastforward);
+        fastforward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deck.fastforward();
+                refreshScreen();
+            }
+        });
+
+        reshuffle = (ImageButton) findViewById(R.id.shuffle);
+        reshuffle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deck.shuffle();
+                refreshScreen();
+            }
+        });
+
+        if (savedInstanceState == null) {
+            deck.shuffle();
+        }
 
 
-        AdView mAdView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+
+            AdView mAdView = (AdView) findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+
+
     }
 
     public void refreshScreen( ){
@@ -134,12 +169,13 @@ public class MainActivity extends ActionBarActivity {
         deck.setPosition(savedInstanceState.getInt("position"));
         deck.setLaidCards(savedInstanceState.getInt("laidCards"));
         deck.setRemainingCards(savedInstanceState.getInt("remainingCards"));
+        refreshScreen();
 
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        refreshScreen();
+
     }
 }

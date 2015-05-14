@@ -13,27 +13,26 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:baselineAligned="false">
+        android:baselineAligned="false"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fastforward"
+            android:src="@drawable/ic_fast_rewind_black_24dp"
+            android:background="@android:color/transparent" />
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
 
-            android:gravity="center_vertical|center_horizontal"
+            android:gravity="center_horizontal"
             android:layout_weight="1"
-            android:layout_marginBottom="20dp">
+            >
 
             <ImageButton
-                style="@style/spacedOut"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/fastforward"
-                android:src="@drawable/ic_fast_rewind_black_24dp"
-                android:background="@android:color/transparent" />
-
-            <ImageButton
-                style="@style/spacedOut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/turned"
@@ -42,10 +41,10 @@
                 android:background="@android:color/transparent" />
 
             <TextView
-                style="@style/spacedOut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="00"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
                 android:id="@+id/laidCards" />
 
         </LinearLayout>
@@ -54,10 +53,9 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:gravity="center|center_horizontal"
+            android:gravity="center_horizontal"
             android:layout_weight="1.5"
-            android:baselineAligned="false"
-            android:layout_marginBottom="20dp">
+            android:baselineAligned="false">
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -74,22 +72,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
-            android:gravity="center_vertical|center_horizontal"
+            android:gravity="center_horizontal"
             android:layout_weight="1"
 
-            android:layout_marginBottom="20dp">
+            >
 
             <ImageButton
-                style="@style/spacedOut"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/rewind"
-                android:src="@drawable/ic_fast_forward_black_24dp"
-                android:background="@android:color/transparent"
-                android:focusableInTouchMode="false" />
-
-            <ImageButton
-                style="@style/spacedOut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/unturned"
@@ -98,12 +86,21 @@
                 android:background="@android:color/transparent" />
 
             <TextView
-                style="@style/spacedOut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="00"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/deck"
                 android:id="@+id/remainingCards" />
         </LinearLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rewind"
+            android:src="@drawable/ic_fast_forward_black_24dp"
+            android:background="@android:color/transparent"
+            android:focusableInTouchMode="false" />
+
     </LinearLayout>
 
     <LinearLayout
